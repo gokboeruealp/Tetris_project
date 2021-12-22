@@ -13,4 +13,22 @@ void draw()
   background(0);
   grid.display();
   tetromino.display();
+  
+  tetromino.moveDown(1);
+}
+
+void keyPressed()
+{
+  if(keyCode == RIGHT)
+  {
+    tetromino.moveTetromino("R");
+  }
+  else if(keyCode == LEFT)
+  {
+    tetromino.moveTetromino("L");
+  }
+  else if(keyCode == DOWN)
+  {
+    tetromino.moveTetromino("D");
+  }
 }
