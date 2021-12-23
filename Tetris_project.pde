@@ -13,22 +13,40 @@ void setup()
   onDeck = new Tetromino();
   
   bg = new Background();
+  
+  textSize(44);
 }
 
 void draw()
 {
   bg.display();
   grid.display();
-  tetromino.display();
-  
-  tetromino.moveDown(1);
-  
-  checkBottom();
+  spawnTetrominoes();
 }
 
-void spawnTetromino()
+void spawnTetrominoes()
 {
-  bg.spawnTetromino(tetromino);
+  tetromino.display();
+  onDeck.showOnDeck();
+  
+  if(tetromino.checkBackground(bg))
+  {
+    tetromino.moveDown(1);
+  }
+  else
+  {
+    tetromino.isActive = false;
+  }
+  
+  if(!tetromino.isActive)
+  {
+    bg.spawnTetromino(tetromino);
+    tetromino = onDeck;
+      
+    tetromino.isActive = true;
+    onDeck = new Tetromino();
+  }
+  
 }
 
 void keyPressed()
@@ -56,16 +74,4 @@ void keyReleased()
   }
   
   tetromino.rotCount++;
-}
-
-void checkBottom()
-{
-  if(!tetromino.isActive)
-  {
-    spawnTetromino();
-    tetromino = onDeck;
-    
-    tetromino.isActive = true;
-    onDeck = new Tetromino();
-  }
 }

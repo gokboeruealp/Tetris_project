@@ -18,6 +18,8 @@ class Tetromino
    //Time counter
    private int counter;
    
+   private int x, y;
+   
    //Spawn Tetromino(random t & color)
    public Tetromino()
    {
@@ -80,6 +82,21 @@ class Tetromino
      for(int i = 0; i < 4; i++)
      {
        rect(theTetromino[i][0]*w, theTetromino[i][1]*w, w, w);
+     }
+   }
+   
+   public void showOnDeck()
+   {
+     fill(0,0,100);
+     rect(width/2, 0, width/2, height);
+     fill(0);
+     text("NEXT TETROMINO:", width/2 + 20, 50);
+     fill(255);
+     text("NEXT TETROMINO:", width/2 + 25, 55);
+     fill(r, g, b);
+     for(int i = 0; i < 4; i++)
+     {
+       rect(theTetromino[i][0]*w + width/2 + 100, theTetromino[i][1]*w + 100, w, w);
      }
    }
    
@@ -190,5 +207,26 @@ class Tetromino
        }
        theTetromino = rotated;
      }
+   }
+   
+   public boolean checkBackground(Background bg)
+   {
+      for(int i = 0; i < 4; i++)
+      {
+        x = theTetromino[i][0];
+        y = theTetromino[i][1];
+        
+         if(x >= 0 && x < 12 && y >=0 && y < 23)
+         {
+           for(int a = 0; a < 3; a++)
+           {
+             if(bg.colors[x][y+1][a] != 0)
+             {
+              return false;
+             }
+           }
+         }
+      }
+      return true;
    }
 }
