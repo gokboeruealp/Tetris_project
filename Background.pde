@@ -25,6 +25,14 @@ public class Background
           rect(i*w, j*w, w, w);
         }
       }
+      
+      for(int i = 0; i < 24; i++)
+      {
+        if(checkLine(i))
+        {
+          removeLine(i);
+        }
+      }
   }
 
   public void spawnTetromino(Tetromino t)
@@ -40,6 +48,43 @@ public class Background
      }
   }
 
-
+  public boolean checkLine(int row)
+  {
+    for(int i = 0; i < 12; i++)
+    {
+      if(colors[i][row][0] == 0 && colors[i][row][1] == 0 && colors[i][row][2] == 0)
+      {
+        return false;
+      }
+    }
+    
+    return true;
+  }
    
+  public void removeLine(int row)
+  {
+    int[][][] newBackground = new int[12][24][3];
+    for(int i = 0; i < 12; i++)
+    {
+      for(int j = 23; j > row; j--)
+      {
+        for(int a = 0; a < 3; a++)
+          {
+              newBackground[i][j][a] = colors[i][j][a];
+          }
+      }
+    }
+    
+    for(int r = row -1; r > 0; r--)
+      {
+        for(int j = 12; j < 3; j++)
+          {
+              newBackground[j][r][0] = colors[j][r-1][0];
+              newBackground[j][r][0] = colors[j][r-1][1];
+              newBackground[j][r][0] = colors[j][r-1][2];
+          }
+      }
+    
+    colors = newBackground;
+  }
 }

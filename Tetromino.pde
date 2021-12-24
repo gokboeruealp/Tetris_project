@@ -168,46 +168,33 @@ class Tetromino
      }
    }
    
-   public void rotate()
-   {
-     if(theTetromino != oTetromino)
-     {
+  public void rotate(){
+    if(theTetromino != oTetromino){
        int[][] rotated = new int[4][2];
-       if(rotCount % 4 == 0)
-       {
-         for(int i = 0; i < 4; i++)
-         {
-             rotated[i][0] = _T[i][1] - theTetromino[1][0];
-             rotated[i][1] = -_T[i][0] - theTetromino[1][1];
+       if(rotCount % 4 == 0){
+         for(int i = 0; i < 4; i++){
+            rotated[i][0] = _T[i][1] - theTetromino[1][0];
+            rotated[i][1] = -_T[i][0] - theTetromino[1][1];
          }
-       }
-       else if(rotCount % 4 == 1)
-       {
-         for(int i = 0; i < 4; i++)
-         {
-             rotated[i][0] = -_T[i][0] - theTetromino[1][0];
-             rotated[i][1] = _T[i][1] - theTetromino[1][1];
+       } else if (rotCount % 4 == 1){
+          for(int i = 0; i < 4; i++){
+            rotated[i][0] = -_T[i][0] - theTetromino[1][0];
+            rotated[i][1] = -_T[i][1] - theTetromino[1][1];
          }
-       }
-       else if(rotCount % 4 == 2)
-       {
-         for(int i = 0; i < 4; i++)
-         {
-             rotated[i][0] = -_T[i][1] - theTetromino[1][0];
-             rotated[i][1] = _T[i][0] - theTetromino[1][1];
+       } else if (rotCount % 4 == 2){ 
+         for(int i = 0; i < 4; i++){
+            rotated[i][0] = -_T[i][1] - theTetromino[1][0];
+            rotated[i][1] = _T[i][0] - theTetromino[1][1];
          }
-       }
-       else if(rotCount % 4 == 3)
-       {
-         for(int i = 0; i < 4; i++)
-         {
-             rotated[i][0] = _T[i][0] - theTetromino[1][0];
-             rotated[i][1] = _T[i][1] - theTetromino[1][1];
-         }
+       } else if (rotCount % 4 == 3){
+          for(int i = 0; i < 4; i++){
+            rotated[i][0] = _T[i][0] - theTetromino[1][0];
+            rotated[i][1] = _T[i][1] - theTetromino[1][1];
+         } 
        }
        theTetromino = rotated;
-     }
-   }
+    }
+  }
    
    public boolean checkBackground(Background bg)
    {
